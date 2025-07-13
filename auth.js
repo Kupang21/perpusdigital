@@ -1,8 +1,14 @@
-function isAuthenticated(req, res, next) {
-  if (req.session && req.session.user) {
-    return next();
-  }
-  return res.redirect('/login');
-}
+const express = require('express');
+const router = express.Router();
+const authController = require('../controllers/authController');
 
-module.exports = { isAuthenticated };
+// Halaman login
+router.get('/login', authController.getLogin);
+
+// Proses login
+router.post('/login', authController.postLogin);
+
+// Logout
+router.get('/logout', authController.logout);
+
+module.exports = router;
