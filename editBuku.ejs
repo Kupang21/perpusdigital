@@ -1,0 +1,71 @@
+<%- include('../partials/header') %>
+<div class="flex min-h-screen bg-gray-50">
+  <%- include('../partials/sidebar') %>
+
+  <main class="p-6 w-full bg-gray-50">
+    <h2 class="text-2xl font-semibold text-indigo-700 mb-6">✏️ Edit Buku</h2>
+
+    <form action="/admin/books/edit/<%= book._id %>?_method=PUT" method="POST"
+      class="bg-white p-6 rounded-xl shadow max-w-4xl space-y-4">
+
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-6 items-center">
+        <label class="text-sm font-medium text-gray-700">ISBN</label>
+        <input type="text" name="isbn" value="<%= book.isbn %>" required
+          class="border border-gray-300 rounded-md px-3 py-2 w-full" />
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-6 items-center">
+        <label class="text-sm font-medium text-gray-700">Judul</label>
+        <input type="text" name="title" value="<%= book.title %>" required
+          class="border border-gray-300 rounded-md px-3 py-2 w-full" />
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-6 items-center">
+        <label class="text-sm font-medium text-gray-700">Penulis</label>
+        <input type="text" name="author" value="<%= book.author %>"
+          class="border border-gray-300 rounded-md px-3 py-2 w-full" />
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-6 items-center">
+        <label class="text-sm font-medium text-gray-700">Penerbit</label>
+        <input type="text" name="publisher" value="<%= book.publisher %>"
+          class="border border-gray-300 rounded-md px-3 py-2 w-full" />
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-6 items-center">
+        <label class="text-sm font-medium text-gray-700">Tahun</label>
+        <input type="number" name="year" value="<%= book.year %>"
+          class="border border-gray-300 rounded-md px-3 py-2 w-full" />
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-6 items-center">
+        <label class="text-sm font-medium text-gray-700">Tag (pisahkan dengan koma)</label>
+        <input type="text" name="tags" value="<%= book.tags.join(', ') %>"
+          class="border border-gray-300 rounded-md px-3 py-2 w-full" />
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-6 items-center">
+        <label class="text-sm font-medium text-gray-700">Jumlah Salinan</label>
+        <input type="number" name="copies_total" value="<%= book.copies_total %>" required
+          class="border border-gray-300 rounded-md px-3 py-2 w-full" />
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-6 items-center">
+        <label class="text-sm font-medium text-gray-700">Link File PDF</label>
+        <input type="url" name="file" value="<%= book.file %>"
+          class="border border-gray-300 rounded-md px-3 py-2 w-full" />
+      </div>
+
+      <div class="flex justify-between pt-6">
+        <a href="/admin/books"
+          class="px-5 py-2 bg-gray-300 text-gray-700 rounded-lg hover:bg-gray-400 transition">
+          Batal
+        </a>
+        <button type="submit"
+          class="px-5 py-2 bg-indigo-600 text-white rounded-lg hover:bg-indigo-700 transition">
+          💾 Update Buku
+        </button>
+      </div>
+    </form>
+  </main>
+</div>

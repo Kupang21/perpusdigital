@@ -1,0 +1,49 @@
+<%- include('../partials/header') %>
+<div class="flex min-h-screen">
+  <%- include('../partials/sidebar') %>
+
+  <main class="p-6 w-full bg-gray-50">
+    <h2 class="text-2xl font-bold text-indigo-700 mb-6">🔄 Data Peminjaman</h2>
+
+    <div class="overflow-x-auto bg-white shadow rounded-lg">
+      <table class="min-w-full text-sm text-gray-700">
+        <thead class="bg-indigo-100 text-indigo-700 text-left">
+          <tr>
+            <th class="px-4 py-3">Loan ID</th>
+            <th class="px-4 py-3">User ID</th>
+            <th class="px-4 py-3">ISBN</th>
+            <th class="px-4 py-3">Tanggal Pinjam</th>
+            <th class="px-4 py-3">Jatuh Tempo</th>
+            <th class="px-4 py-3">Status</th>
+          </tr>
+        </thead>
+        <tbody>
+          <% loans.forEach(loan => { %>
+            <tr class="border-b hover:bg-gray-50">
+              <td class="px-4 py-2 font-mono text-indigo-600"><%= loan.loan_id %></td>
+              <td class="px-4 py-2"><%= loan.user_id %></td>
+              <td class="px-4 py-2"><%= loan.isbn %></td>
+              <td class="px-4 py-2 text-gray-600">
+                <%= new Date(loan.loan_date).toLocaleDateString('id-ID', { day: '2-digit', month: 'short', year: 'numeric' }) %>
+              </td>
+              <td class="px-4 py-2 text-gray-600">
+                <%= new Date(loan.due_date).toLocaleDateString('id-ID', { day: '2-digit', month: 'short', year: 'numeric' }) %>
+              </td>
+<td class="px-4 py-2">
+  <form action="/admin/loans/update-status/<%= loan.loan_id %>" method="POST" class="flex items-center gap-1">
+    <select name="status" onchange="this.form.submit()"
+            class="text-xs rounded-full px-2 py-1 text-white focus:outline-none 
+            <%= loan.status === 'ongoing' ? 'bg-yellow-500' : loan.status === 'returned' ? 'bg-green-500' : 'bg-red-500' %>">
+      <option value="ongoing" <%= loan.status === 'ongoing' ? 'selected' : '' %>>Ongoing</option>
+      <option value="returned" <%= loan.status === 'returned' ? 'selected' : '' %>>Returned</option>
+    </select>
+  </form>
+</td>
+
+            </tr>
+          <% }) %>
+        </tbody>
+      </table>
+    </div>
+  </main>
+</div>
