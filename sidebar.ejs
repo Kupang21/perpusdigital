@@ -1,0 +1,37 @@
+<aside class="w-64 min-h-screen bg-white border-r shadow-sm px-4 py-6">
+  <nav class="flex flex-col space-y-3 text-gray-700 font-medium">
+    <% if (user.role === 'admin') { %>
+      <a href="/admin/dashboard" class="flex items-center px-3 py-2 rounded-lg hover:bg-indigo-50 hover:text-indigo-600 transition">
+        📊 <span class="ml-2">Dashboard</span>
+      </a>
+      <a href="/admin/users" class="flex items-center px-3 py-2 rounded-lg hover:bg-indigo-50 hover:text-indigo-600 transition">
+        👥 <span class="ml-2">Manajemen Pengguna</span>
+      </a>
+      <a href="/admin/books" class="flex items-center px-3 py-2 rounded-lg hover:bg-indigo-50 hover:text-indigo-600 transition">
+        📚 <span class="ml-2">Manajemen Buku</span>
+      </a>
+      <a href="/admin/loans" class="flex items-center px-3 py-2 rounded-lg hover:bg-indigo-50 hover:text-indigo-600 transition">
+        🔄 <span class="ml-2">Peminjaman</span>
+      </a>
+      <a href="/admin/reviews" class="flex items-center px-3 py-2 rounded-lg hover:bg-indigo-50 hover:text-indigo-600 transition">
+        📝 <span class="ml-2">Review</span>
+      </a>
+      <a href="/admin/reservations" class="flex items-center px-3 py-2 rounded-lg hover:bg-indigo-50 hover:text-indigo-600 transition">
+        ⏳ <span class="ml-2">Reservasi</span>
+      </a>
+    <% } else if (user.role === 'member') { %>
+      <a href="/member/dashboard" class="flex items-center px-3 py-2 rounded-lg hover:bg-indigo-50 hover:text-indigo-600 transition">
+        📚 <span class="ml-2">Daftar Buku</span>
+      </a>
+      <a href="/member/loans" class="flex items-center px-3 py-2 rounded-lg hover:bg-indigo-50 hover:text-indigo-600 transition">
+        🔄 <span class="ml-2">Riwayat Pinjam</span>
+      </a>
+      <a href="/member/reviews" class="flex items-center px-3 py-2 rounded-lg hover:bg-indigo-50 hover:text-indigo-600 transition">
+        📝 <span class="ml-2">Review</span>
+      </a>
+      <a href="/member/reservations" class="flex items-center px-3 py-2 rounded-lg hover:bg-indigo-50 hover:text-indigo-600 transition">
+        ⏳ <span class="ml-2">Reservasi</span>
+      </a>
+    <% } %>
+  </nav>
+</aside>
